@@ -15,12 +15,18 @@
 int		ft_atoi(const char **str, va_list argp)
 {
 	long	res;
+	int		precision;
 
 	res = 0;
 	if (**str == '.')
 		*str += 1;
 	if (**str == '*')
-		return (va_arg(argp, int));
+	{
+		precision = va_arg(argp, int);
+		if (precision < 0)
+			precision = -1;
+		return (precision);
+	}
 	while (**str >= '0' && **str <= '9')
 	{
 		res = (res * 10) + **str - '0';

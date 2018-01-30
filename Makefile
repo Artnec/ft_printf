@@ -12,9 +12,9 @@
 
 NAME		=	libftprintf.a
 
-SRC_FILES	=	ft_printf.c		put_unsigned_num.c		put_signed_num.c \
-				put_wide.c		ft_atoi.c				put_space_or_zero.c \
-				put_str_char.c	num_len.c				initialize_structure.c \
+SRC_FILES	=	ft_printf.c		put_signed_num.c		put_unsigned_num.c \
+				put_wide.c		put_str_char.c			put_space_or_zero.c \
+				ft_atoi.c		num_len.c				initialize_structure.c \
 				is_type.c		n_type.c
 
 CC			=	gcc

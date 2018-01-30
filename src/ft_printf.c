@@ -59,6 +59,11 @@ static void	parse_flags(const char **fmt, va_list argp, t_flags *sd)
 		sd->zero = 1;
 	else if (**fmt >= '0' && **fmt <= '9')
 		sd->width = ft_atoi(fmt, argp);
+	if (sd->width < 0)
+	{
+		sd->width = -(sd->width);
+		sd->minus = 1;
+	}
 }
 
 static int	get_flags(const char **fmt, va_list argp, t_flags *sd)
