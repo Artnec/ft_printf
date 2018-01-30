@@ -24,7 +24,7 @@ static int	wide_char_len(wchar_t wc, t_flags *sd)
 		sd->error = -1;
 		return (-1);
 	}
-	else if (wc < 128 || (wc < 255 && MB_CUR_MAX == 1))
+	else if (wc < 128 || (wc < 256 && MB_CUR_MAX == 1))
 		return (1);
 	else if (wc < 2056)
 		return (2);

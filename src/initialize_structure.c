@@ -18,6 +18,7 @@ void	initialize_structure(t_flags *sd)
 	sd->precision = -1;
 	sd->minus = 0;
 	sd->type = 0;
+	sd->ntype = 0;
 	sd->hash = 0;
 	sd->space = 0;
 	sd->zero = 0;

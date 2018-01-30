@@ -102,6 +102,8 @@ static int	parse(const char **fmt, t_flags *sd, va_list argp)
 		sd->type == 'X' || sd->type == 'o' || sd->type == 'O' ||
 		sd->type == 'p' || sd->type == 'b')
 		ret = put_unsigned_num(*sd, argp);
+	else if (sd->type == 'n')
+		sd->ntype = 1;
 	return (ret);
 }
 
@@ -122,6 +124,7 @@ int			ft_printf(const char *fmt, ...)
 		{
 			fmt++;
 			ret += (*fmt == '%') ? write(1, "%", 1) : parse(&fmt, &sd, argp);
+			(sd.type == 'n') ? n_type(ret, argp) : 0;
 			if (sd.error == -1)
 				return (-1);
 		}

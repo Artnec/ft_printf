@@ -20,6 +20,7 @@
 typedef struct	s_flags
 {
 	int			type;
+	int			ntype;
 	int			width;
 	int			precision;
 	int			length;
@@ -46,5 +47,7 @@ int				ft_atoi(const char **str);
 int				put_space_or_zero(int width, int zero);
 int				num_len(long long num, t_flags sd);
 int				unsigned_num_len(size_t num, unsigned int base, t_flags sd);
+
+void			n_type(int ret, va_list	argp);
 
 #endif
