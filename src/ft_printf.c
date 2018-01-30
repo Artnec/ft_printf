@@ -41,7 +41,7 @@ static int	get_length_flag(const char *fmt, t_flags *sd)
 	return (ret);
 }
 
-static void	parse_flags(const char **fmt, t_flags *sd)
+static void	parse_flags(const char **fmt, va_list argp, t_flags *sd)
 {
 	if (**fmt == '#')
 		sd->hash = 1;
@@ -51,15 +51,17 @@ static void	parse_flags(const char **fmt, t_flags *sd)
 		sd->plus = 1;
 	else if (**fmt == '-')
 		sd->minus = 1;
+	else if (**fmt == '*')
+		sd->width = va_arg(argp, int);
 	else if (**fmt == '.')
-		sd->precision = ft_atoi(fmt);
+		sd->precision = ft_atoi(fmt, argp);
 	else if (**fmt == '0')
 		sd->zero = 1;
 	else if (**fmt >= '0' && **fmt <= '9')
-		sd->width = ft_atoi(fmt);
+		sd->width = ft_atoi(fmt, argp);
 }
 
-static int	get_flags(const char **fmt, t_flags *sd)
+static int	get_flags(const char **fmt, va_list argp, t_flags *sd)
 {
 	const char	*tmp = *fmt;
 
@@ -69,8 +71,8 @@ static int	get_flags(const char **fmt, t_flags *sd)
 	while (**fmt != *tmp)
 	{
 		if (**fmt == '#' || **fmt == ' ' || **fmt == '+' || **fmt == '-' ||
-			**fmt == '.' || (**fmt >= '0' && **fmt <= '9'))
-			parse_flags(fmt, sd);
+			**fmt == '.' || **fmt == '*' || (**fmt >= '0' && **fmt <= '9'))
+			parse_flags(fmt, argp, sd);
 		else if (**fmt != 'l' && **fmt != 'h' && **fmt != 'z' && **fmt != 'j')
 		{
 			*fmt += put_no_type(fmt, sd);
@@ -91,7 +93,7 @@ static int	parse(const char **fmt, t_flags *sd, va_list argp)
 	int	ret;
 
 	ret = 0;
-	if (get_flags(fmt, sd) != 0)
+	if (get_flags(fmt, argp, sd) != 0)
 		return (sd->plus);
 	if (sd->type == 'c' || sd->type == 'C' || sd->type == 's' ||
 		sd->type == 'S')

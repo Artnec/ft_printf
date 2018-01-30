@@ -10,27 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**	int s;
-**
-**	s = 1;
-**	while (**str != '\0' && (**str == ' ' || (**str >= 9 && **str <= 13)))
-**		*str += 1;
-**	if (**str == '-' || **str == '+')
-**		if (**str == '-')
-**		{
-**			s = -1;
-**			*str += 1;
-**		}
-*/
+#include "ft_printf.h"
 
-int		ft_atoi(const char **str)
+int		ft_atoi(const char **str, va_list argp)
 {
 	long	res;
 
 	res = 0;
 	if (**str == '.')
 		*str += 1;
+	if (**str == '*')
+		return (va_arg(argp, int));
 	while (**str >= '0' && **str <= '9')
 	{
 		res = (res * 10) + **str - '0';

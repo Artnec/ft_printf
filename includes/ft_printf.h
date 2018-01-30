@@ -43,7 +43,7 @@ int				put_signed_num(t_flags *sd, va_list argp);
 int				put_unsigned_num(t_flags sd, va_list argp);
 void			initialize_structure(t_flags *sd);
 int				is_type(const char *s);
-int				ft_atoi(const char **str);
+int				ft_atoi(const char **str, va_list argp);
 int				put_space_or_zero(int width, int zero);
 int				num_len(long long num, t_flags sd);
 int				unsigned_num_len(size_t num, unsigned int base, t_flags sd);
